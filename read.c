@@ -6,8 +6,10 @@
 
 int main()
 {
-	int ir = q3c_init(IR_DEVICE);
+	int ir;
 	float t0_value;
+	if ((ir = q3c_init(IR_DEVICE) < 0))
+		return 1;
 	if ((t0_value = q3c_read(ir)) < 0) {
 		q3c_cleanup(ir);
 		return 1;
