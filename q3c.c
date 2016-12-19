@@ -113,7 +113,7 @@ float q3c_read(int ir)
 
 	while(n < Q3C_RESPONSE_LENGTH) {
 		n = write(ir, sml_request, sizeof(sml_request));
-		fprintf(stderr, "Sent %d bytes\n", n);
+		//fprintf(stderr, "Sent %d bytes\n", n);
 
 		n = 0;
 		while (n < Q3C_RESPONSE_LENGTH) {
@@ -132,10 +132,10 @@ float q3c_read(int ir)
 			} else {
 				int i = read(ir, response+n, sizeof(response)-n);
 				if (n > 0) {
-					fprintf(stderr, "[1A\r");
+					//fprintf(stderr, "[1A\r");
 				}
 				n += i;
-				fprintf(stderr, "Recv %d bytes\n", n);
+				//fprintf(stderr, "Recv %d bytes\n", n);
 			}
 		}
 		if (n >= Q3C_RESPONSE_LENGTH) {
