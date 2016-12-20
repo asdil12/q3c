@@ -25,6 +25,7 @@ int main()
 			if ((t0_power = backlog_calc_power()) > 0) {
 				printf("T0 Power: %.1fW\n", t0_power);
 			}
+			fflush(stdout);
 		}
 	}
 
