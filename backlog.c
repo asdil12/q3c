@@ -31,7 +31,8 @@ float backlog_calc_power()
 	for (i=1; i<256; i++) {
 		struct backlog_entry *be = backlog + (backlog_pos - i);
 		if (be->timestamp && be->timestamp < backlog[backlog_pos].timestamp) {
-			if ((be->timestamp + BACKLOG_MIN_TIMESPAN) <= backlog[backlog_pos].timestamp) {
+			if (be->timestamp <= (backlog[backlog_pos].timestamp - BACKLOG_MIN_TIMESPAN)) {
+				// we got what we want
 				break;
 			}
 		} else {
