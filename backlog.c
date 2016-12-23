@@ -1,7 +1,9 @@
-#include "backlog.h"
 #include <stdio.h>
+#include "backlog.h"
+#include "config.h"
 
-#define BACKLOG_MIN_TIMESPAN 300
+struct backlog_entry backlog[256];
+unsigned char backlog_pos;
 
 void backlog_init()
 {
@@ -31,7 +33,7 @@ float backlog_calc_power()
 	for (i=1; i<256; i++) {
 		struct backlog_entry *be = backlog + (backlog_pos - i);
 		if (be->timestamp && be->timestamp < backlog[backlog_pos].timestamp) {
-			if (be->timestamp <= (backlog[backlog_pos].timestamp - BACKLOG_MIN_TIMESPAN)) {
+			if (be->timestamp <= (backlog[backlog_pos].timestamp - config.backlog_min_timespan)) {
 				// we got what we want
 				break;
 			}

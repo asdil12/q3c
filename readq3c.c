@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "q3c.h"
 #include "backlog.h"
+#include "config.h"
 
 #define IR_DEVICE "/dev/ttyUSB0"
 
@@ -9,13 +10,19 @@ int main()
 	int ir;
 	float t0_value, t0_power;
 	float t0_last_value = 0;
+	const char* cfgfile = "/etc/readq3c.cfg";
+	if (config_init(cfgfile) < 0) {
+		fprintf(stderr, "Can't load config '%s'\n", cfgfile);
+		return 1;
+	}
 	backlog_init();
 
-	if ((ir = q3c_init(IR_DEVICE)) < 0)
+	if ((ir = q3c_init(config.ir_device)) < 0)
 		return 1;
 
 	for (;;) {
 		if ((t0_value = q3c_read(ir)) < 0) {
+			config_cleanup();
 			q3c_cleanup(ir);
 			return 1;
 		}
@@ -34,6 +41,7 @@ int main()
 		}
 	}
 
+	config_cleanup();
 	q3c_cleanup(ir);
 	return 0;
 }

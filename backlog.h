@@ -6,9 +6,7 @@
 struct backlog_entry {
 	time_t timestamp;
 	float value;
-} backlog[256];
-
-unsigned char backlog_pos;
+};
 
 void backlog_init();
 void backlog_append(float value);
