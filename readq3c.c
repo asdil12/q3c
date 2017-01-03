@@ -3,8 +3,6 @@
 #include "backlog.h"
 #include "config.h"
 
-#define IR_DEVICE "/dev/ttyUSB0"
-
 int main()
 {
 	int ir;
