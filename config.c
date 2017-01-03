@@ -8,9 +8,9 @@ struct configuration config;
 int config_handler(void* user, const char* section, const char* name, const char* value)
 {
 	#define MATCH(s, n) strcmp(section, s) == 0 && strcmp(name, n) == 0
-	if (MATCH("q3cread", "ir_device"))
+	if (MATCH("q3c", "ir_device"))
 		config.ir_device = strdup(value);
-	else if (MATCH("q3cread", "backlog_min_timespan"))
+	else if (MATCH("q3c", "backlog_min_timespan"))
 		config.backlog_min_timespan = atoi(value);
 	else
 		return 0;
