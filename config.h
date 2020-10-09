@@ -3,6 +3,7 @@
 
 struct configuration {
 	char* ir_device;
+	char* status_dir;
 	unsigned int backlog_min_timespan;
 };
 
