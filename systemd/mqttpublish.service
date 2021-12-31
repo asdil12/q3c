@@ -1,0 +1,10 @@
+[Unit]
+Description=MQTT Publish
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/mqtt_publish.sh
+Environment=HOME=/root/
+
+[Install]
+WantedBy=multi-user.target

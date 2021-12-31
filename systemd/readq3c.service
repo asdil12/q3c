@@ -1,0 +1,9 @@
+[Unit]
+Description=ReadQ3C
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/readq3c
+
+[Install]
+WantedBy=multi-user.target
