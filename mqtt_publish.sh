@@ -5,13 +5,13 @@ host="ikarus.heidler.lan"
 user="abc"
 pass="123"
 
-power=$(cat "${status_dir}/power")
-value=$(cat "${status_dir}/value")
-
 power_old=""
 value_old=""
 
 while true ; do
+	power=$(cat "${status_dir}/power")
+	value=$(cat "${status_dir}/value")
+
 	if [[ "$power_old" != "$power" ]] ; then
 		mosquitto_pub -h "$host" -u "$user" -P "$pass" -t "q3c/power" -m "$power"
 		echo "q3c/power -> $power"
